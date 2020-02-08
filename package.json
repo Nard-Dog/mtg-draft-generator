@@ -1,0 +1,16 @@
+{
+  "name": "mtg-draft-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "generate": "node index.js"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^4.3.0",
+    "canvas": "^2.6.1",
+    "dotenv": "^8.2.0",
+    "fs-extra": "^8.1.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.8"
+  }
+}
