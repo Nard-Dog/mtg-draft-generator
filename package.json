@@ -10,7 +10,9 @@
     "canvas": "^2.6.1",
     "dotenv": "^8.2.0",
     "fs-extra": "^8.1.0",
+    "lodash": "^4.17.15",
     "request": "^2.88.0",
-    "request-promise-native": "^1.0.8"
+    "request-promise-native": "^1.0.8",
+    "uuidv4": "^6.0.2"
   }
 }

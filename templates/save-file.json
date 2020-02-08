@@ -1,0 +1,1073 @@
+{
+	"SaveName": "4 Player Magic Table",
+	"GameMode": "4 Player Magic Table",
+	"Gravity": 0.5,
+	"PlayArea": 0.5,
+	"Date": "1/23/2020 1:02:07 AM",
+	"Table": "Table_Custom",
+	"TableURL": "https://storage.googleapis.com/mtg-decks/custom-mtg-table.png",
+	"Sky": "Sky_Sunset",
+	"Note": "",
+	"Rules": "",
+	"XmlUI": "<!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->",
+	"LuaScript": "--[[ Lua code. See documentation: https://api.tabletopsimulator.com/ --]]\n\n--[[ The onLoad event is called after the game save finishes loading. --]]\nfunction onLoad()\n    --[[ print('onLoad!') --]]\nend\n\n--[[ The onUpdate event is called once per frame. --]]\nfunction onUpdate()\n    --[[ print('onUpdate loop!') --]]\nend",
+	"LuaScriptState": "",
+	"Grid": {
+		"Type": 0,
+		"Lines": false,
+		"Color": {
+			"r": 0,
+			"g": 0,
+			"b": 0
+		},
+		"Opacity": 0.75,
+		"ThickLines": false,
+		"Snapping": false,
+		"Offset": false,
+		"BothSnapping": false,
+		"xSize": 1,
+		"ySize": 1,
+		"PosOffset": {
+			"x": 0,
+			"y": 1,
+			"z": 0
+		}
+	},
+	"Lighting": {
+		"LightIntensity": 0.54,
+		"LightColor": {
+			"r": 1,
+			"g": 0.9804,
+			"b": 0.8902
+		},
+		"AmbientIntensity": 1.3,
+		"AmbientType": 0,
+		"AmbientSkyColor": {
+			"r": 0.5,
+			"g": 0.5,
+			"b": 0.5
+		},
+		"AmbientEquatorColor": {
+			"r": 0.5,
+			"g": 0.5,
+			"b": 0.5
+		},
+		"AmbientGroundColor": {
+			"r": 0.5,
+			"g": 0.5,
+			"b": 0.5
+		},
+		"ReflectionIntensity": 1,
+		"LutIndex": 0,
+		"LutContribution": 1
+	},
+	"Hands": {
+		"Enable": true,
+		"DisableUnused": false,
+		"Hiding": 0,
+		"HandTransforms": [
+			{
+				"Color": "Blue",
+				"Transform": {
+					"posX": 23.6700039,
+					"posY": 2.964435,
+					"posZ": 34.4527626,
+					"rotX": 0,
+					"rotY": 179.8,
+					"rotZ": 0,
+					"scaleX": 15.3334846,
+					"scaleY": 11.8970528,
+					"scaleZ": 6.35342264
+				}
+			},
+			{
+				"Color": "Green",
+				"Transform": {
+					"posX": -23.6700039,
+					"posY": 2.964435,
+					"posZ": 34.43159,
+					"rotX": 0,
+					"rotY": 180.000015,
+					"rotZ": 0,
+					"scaleX": 15.3268747,
+					"scaleY": 11.8970528,
+					"scaleZ": 6.35014534
+				}
+			},
+			{
+				"Color": "Red",
+				"Transform": {
+					"posX": -23.6700039,
+					"posY": 2.964435,
+					"posZ": -34.42515,
+					"rotX": 0,
+					"rotY": 0,
+					"rotZ": 0,
+					"scaleX": 15.3268948,
+					"scaleY": 11.8970528,
+					"scaleZ": 6.35014534
+				}
+			},
+			{
+				"Color": "White",
+				"Transform": {
+					"posX": 23.6700039,
+					"posY": 2.964435,
+					"posZ": -34.2558136,
+					"rotX": 0,
+					"rotY": 0,
+					"rotZ": 0,
+					"scaleX": 15.3268747,
+					"scaleY": 11.8970547,
+					"scaleZ": 6.705048
+				}
+			},
+			{
+				"Color": "Red",
+				"Transform": {
+					"posX": -48.193634,
+					"posY": 4.136275,
+					"posZ": -18.843008,
+					"rotX": 0,
+					"rotY": 0,
+					"rotZ": 0,
+					"scaleX": 5.72354126,
+					"scaleY": 7,
+					"scaleZ": 11.7811146
+				}
+			},
+			{
+				"Color": "Green",
+				"Transform": {
+					"posX": -47.8811874,
+					"posY": 4.136275,
+					"posZ": 18.7366047,
+					"rotX": 0,
+					"rotY": 0,
+					"rotZ": 0,
+					"scaleX": 6.35650349,
+					"scaleY": 7,
+					"scaleZ": 11.49701
+				}
+			},
+			{
+				"Color": "Blue",
+				"Transform": {
+					"posX": 48.5719223,
+					"posY": 4.132273,
+					"posZ": 18.7374573,
+					"rotX": 0,
+					"rotY": 0,
+					"rotZ": 0,
+					"scaleX": 7.056759,
+					"scaleY": 7,
+					"scaleZ": 11.4975538
+				}
+			},
+			{
+				"Color": "White",
+				"Transform": {
+					"posX": 48.94248,
+					"posY": 4.132273,
+					"posZ": -18.9939785,
+					"rotX": 0,
+					"rotY": 0,
+					"rotZ": 0,
+					"scaleX": 7.168583,
+					"scaleY": 7,
+					"scaleZ": 11.4782181
+				}
+			}
+		]
+	},
+	"Turns": {
+		"Enable": false,
+		"Type": 0,
+		"TurnOrder": [],
+		"Reverse": false,
+		"SkipEmpty": false,
+		"DisableInteractions": false,
+		"PassTurns": true,
+		"TurnColor": ""
+	},
+	"ObjectStates": [
+		{
+			"Name": "Infinite_Bag",
+			"Transform": {
+				"posX": -42.5,
+				"posY": 1,
+				"posZ": 3,
+				"rotX": 0,
+				"rotY": 0,
+				"rotZ": 0,
+				"scaleX": 1,
+				"scaleY": 1,
+				"scaleZ": 1
+			},
+			"Nickname": "D20s",
+			"Description": "",
+			"GMNotes": "",
+			"ColorDiffuse": {
+				"r": 0.627,
+				"g": 0.124999978,
+				"b": 0.941
+			},
+			"Locked": false,
+			"Grid": true,
+			"Snap": true,
+			"IgnoreFoW": false,
+			"Autoraise": true,
+			"Sticky": true,
+			"Tooltip": true,
+			"GridProjection": false,
+			"HideWhenFaceDown": false,
+			"Hands": false,
+			"MaterialIndex": -1,
+			"MeshIndex": -1,
+			"XmlUI": "",
+			"LuaScript": "",
+			"LuaScriptState": "",
+			"ContainedObjects": [
+				{
+					"Name": "Die_20",
+					"Transform": {
+						"posX": 9.445001,
+						"posY": 3.44069672,
+						"posZ": -1.78500009,
+						"rotX": 10.812314,
+						"rotY": 0.000179925366,
+						"rotZ": 198.000046,
+						"scaleX": 1,
+						"scaleY": 1,
+						"scaleZ": 1
+					},
+					"Nickname": "",
+					"Description": "",
+					"GMNotes": "",
+					"ColorDiffuse": {
+						"r": 0.517652631,
+						"g": 0.105887152,
+						"b": 0.6196126
+					},
+					"Locked": false,
+					"Grid": true,
+					"Snap": true,
+					"IgnoreFoW": false,
+					"Autoraise": true,
+					"Sticky": true,
+					"Tooltip": true,
+					"GridProjection": false,
+					"HideWhenFaceDown": false,
+					"Hands": false,
+					"MaterialIndex": 0,
+					"XmlUI": "",
+					"LuaScript": "",
+					"LuaScriptState": "",
+					"GUID": "f38435",
+					"RotationValues": [
+						{
+							"Value": 1,
+							"Rotation": {
+								"x": -11,
+								"y": 60,
+								"z": 17
+							}
+						},
+						{
+							"Value": 2,
+							"Rotation": {
+								"x": 52,
+								"y": -60,
+								"z": -17
+							}
+						},
+						{
+							"Value": 3,
+							"Rotation": {
+								"x": -11,
+								"y": -180,
+								"z": 90
+							}
+						},
+						{
+							"Value": 4,
+							"Rotation": {
+								"x": -11,
+								"y": -180,
+								"z": 162
+							}
+						},
+						{
+							"Value": 5,
+							"Rotation": {
+								"x": -11,
+								"y": -60,
+								"z": 234
+							}
+						},
+						{
+							"Value": 6,
+							"Rotation": {
+								"x": -11,
+								"y": -180,
+								"z": 306
+							}
+						},
+						{
+							"Value": 7,
+							"Rotation": {
+								"x": 52,
+								"y": -60,
+								"z": 55
+							}
+						},
+						{
+							"Value": 8,
+							"Rotation": {
+								"x": 52,
+								"y": -60,
+								"z": 198
+							}
+						},
+						{
+							"Value": 9,
+							"Rotation": {
+								"x": 52,
+								"y": -60,
+								"z": 127
+							}
+						},
+						{
+							"Value": 10,
+							"Rotation": {
+								"x": 52,
+								"y": -180,
+								"z": -90
+							}
+						},
+						{
+							"Value": 11,
+							"Rotation": {
+								"x": 308,
+								"y": 0,
+								"z": 90
+							}
+						},
+						{
+							"Value": 12,
+							"Rotation": {
+								"x": 306,
+								"y": -240,
+								"z": -52
+							}
+						},
+						{
+							"Value": 13,
+							"Rotation": {
+								"x": -52,
+								"y": -240,
+								"z": 18
+							}
+						},
+						{
+							"Value": 14,
+							"Rotation": {
+								"x": 307,
+								"y": 120,
+								"z": 233
+							}
+						},
+						{
+							"Value": 15,
+							"Rotation": {
+								"x": 11,
+								"y": 120,
+								"z": -234
+							}
+						},
+						{
+							"Value": 16,
+							"Rotation": {
+								"x": 11,
+								"y": 0,
+								"z": 54
+							}
+						},
+						{
+							"Value": 17,
+							"Rotation": {
+								"x": 11,
+								"y": -120,
+								"z": -17
+							}
+						},
+						{
+							"Value": 18,
+							"Rotation": {
+								"x": 11,
+								"y": 0,
+								"z": -90
+							}
+						},
+						{
+							"Value": 19,
+							"Rotation": {
+								"x": -52,
+								"y": -240,
+								"z": -198
+							}
+						},
+						{
+							"Value": 20,
+							"Rotation": {
+								"x": 11,
+								"y": 0,
+								"z": -162
+							}
+						}
+					]
+				}
+			],
+			"GUID": "bf8d2e"
+		},
+		{
+			"Name": "Infinite_Bag",
+			"Transform": {
+				"posX": -42.5,
+				"posY": 1,
+				"posZ": 0,
+				"rotX": 0,
+				"rotY": 0,
+				"rotZ": 0,
+				"scaleX": 1,
+				"scaleY": 1,
+				"scaleZ": 1
+			},
+			"Nickname": "D12s",
+			"Description": "",
+			"GMNotes": "",
+			"ColorDiffuse": {
+				"r": 0.9559999,
+				"g": 0.39199996,
+				"b": 0.112999953
+			},
+			"Locked": false,
+			"Grid": true,
+			"Snap": true,
+			"IgnoreFoW": false,
+			"Autoraise": true,
+			"Sticky": true,
+			"Tooltip": true,
+			"GridProjection": false,
+			"HideWhenFaceDown": false,
+			"Hands": false,
+			"MaterialIndex": -1,
+			"MeshIndex": -1,
+			"XmlUI": "",
+			"LuaScript": "",
+			"LuaScriptState": "",
+			"ContainedObjects": [
+				{
+					"Name": "Die_12",
+					"Transform": {
+						"posX": -0.07500005,
+						"posY": 3.4493382,
+						"posZ": -0.595,
+						"rotX": 270,
+						"rotY": -0.0001232389,
+						"rotZ": 0,
+						"scaleX": 1,
+						"scaleY": 1,
+						"scaleZ": 1
+					},
+					"Nickname": "",
+					"Description": "",
+					"GMNotes": "",
+					"ColorDiffuse": {
+						"r": 0.8156889,
+						"g": 0.5098095,
+						"b": 0.117652006
+					},
+					"Locked": false,
+					"Grid": true,
+					"Snap": true,
+					"IgnoreFoW": false,
+					"Autoraise": true,
+					"Sticky": true,
+					"Tooltip": true,
+					"GridProjection": false,
+					"HideWhenFaceDown": false,
+					"Hands": false,
+					"MaterialIndex": 0,
+					"XmlUI": "",
+					"LuaScript": "",
+					"LuaScriptState": "",
+					"GUID": "857cc2",
+					"RotationValues": [
+						{
+							"Value": 1,
+							"Rotation": {
+								"x": 27,
+								"y": 0,
+								"z": 72
+							}
+						},
+						{
+							"Value": 2,
+							"Rotation": {
+								"x": 27,
+								"y": 0,
+								"z": 144
+							}
+						},
+						{
+							"Value": 3,
+							"Rotation": {
+								"x": 27,
+								"y": 0,
+								"z": -72
+							}
+						},
+						{
+							"Value": 4,
+							"Rotation": {
+								"x": -27,
+								"y": 180,
+								"z": 180
+							}
+						},
+						{
+							"Value": 5,
+							"Rotation": {
+								"x": 90,
+								"y": 180,
+								"z": 0
+							}
+						},
+						{
+							"Value": 6,
+							"Rotation": {
+								"x": 27,
+								"y": 0,
+								"z": -144
+							}
+						},
+						{
+							"Value": 7,
+							"Rotation": {
+								"x": -27,
+								"y": 180,
+								"z": 36
+							}
+						},
+						{
+							"Value": 8,
+							"Rotation": {
+								"x": -90,
+								"y": 180,
+								"z": 0
+							}
+						},
+						{
+							"Value": 9,
+							"Rotation": {
+								"x": 27,
+								"y": 0,
+								"z": 0
+							}
+						},
+						{
+							"Value": 10,
+							"Rotation": {
+								"x": -27,
+								"y": 180,
+								"z": 108
+							}
+						},
+						{
+							"Value": 11,
+							"Rotation": {
+								"x": -27,
+								"y": 108,
+								"z": -36
+							}
+						},
+						{
+							"Value": 12,
+							"Rotation": {
+								"x": -27,
+								"y": 36,
+								"z": -108
+							}
+						}
+					]
+				}
+			],
+			"GUID": "7a754d"
+		},
+		{
+			"Name": "Infinite_Bag",
+			"Transform": {
+				"posX": -42.5,
+				"posY": 1,
+				"posZ": -3,
+				"rotX": 0,
+				"rotY": 0,
+				"rotZ": 0,
+				"scaleX": 1,
+				"scaleY": 1,
+				"scaleZ": 1
+			},
+			"Nickname": "D6s",
+			"Description": "",
+			"GMNotes": "",
+			"ColorDiffuse": {
+				"r": 0.191999972,
+				"g": 0.701,
+				"b": 0.167999953
+			},
+			"Locked": false,
+			"Grid": true,
+			"Snap": true,
+			"IgnoreFoW": false,
+			"Autoraise": true,
+			"Sticky": true,
+			"Tooltip": true,
+			"GridProjection": false,
+			"HideWhenFaceDown": false,
+			"Hands": false,
+			"MaterialIndex": -1,
+			"MeshIndex": -1,
+			"XmlUI": "",
+			"LuaScript": "",
+			"LuaScriptState": "",
+			"ContainedObjects": [
+				{
+					"Name": "Die_6_Rounded",
+					"Transform": {
+						"posX": -0.07500005,
+						"posY": 3.397718,
+						"posZ": 1.78500009,
+						"rotX": 270.034271,
+						"rotY": 136.590546,
+						"rotZ": 0,
+						"scaleX": 1,
+						"scaleY": 1,
+						"scaleZ": 1
+					},
+					"Nickname": "",
+					"Description": "",
+					"GMNotes": "",
+					"ColorDiffuse": {
+						"r": 0.191999972,
+						"g": 0.701,
+						"b": 0.167999953
+					},
+					"Locked": false,
+					"Grid": true,
+					"Snap": true,
+					"IgnoreFoW": false,
+					"Autoraise": true,
+					"Sticky": true,
+					"Tooltip": true,
+					"GridProjection": false,
+					"HideWhenFaceDown": false,
+					"Hands": false,
+					"MaterialIndex": 1,
+					"XmlUI": "",
+					"LuaScript": "",
+					"LuaScriptState": "",
+					"GUID": "d253fb",
+					"RotationValues": [
+						{
+							"Value": 1,
+							"Rotation": {
+								"x": 0,
+								"y": 0,
+								"z": 0
+							}
+						},
+						{
+							"Value": 2,
+							"Rotation": {
+								"x": 90,
+								"y": 0,
+								"z": 0
+							}
+						},
+						{
+							"Value": 3,
+							"Rotation": {
+								"x": 0,
+								"y": 0,
+								"z": 90
+							}
+						},
+						{
+							"Value": 4,
+							"Rotation": {
+								"x": 0,
+								"y": 0,
+								"z": -90
+							}
+						},
+						{
+							"Value": 5,
+							"Rotation": {
+								"x": -90,
+								"y": 0,
+								"z": 0
+							}
+						},
+						{
+							"Value": 6,
+							"Rotation": {
+								"x": 0,
+								"y": 0,
+								"z": -180
+							}
+						}
+					]
+				}
+			],
+			"GUID": "03b9b4"
+		},
+		{
+			"Name": "Counter",
+			"Transform": {
+				"posX": 0,
+				"posY": 1,
+				"posZ": 2.5,
+				"rotX": 0,
+				"rotY": 180,
+				"rotZ": 0,
+				"scaleX": 2.2,
+				"scaleY": 2.2,
+				"scaleZ": 2.2
+			},
+			"Nickname": "",
+			"Description": "",
+			"GMNotes": "",
+			"ColorDiffuse": {
+				"r": 0.0823529139,
+				"g": 0.0823529139,
+				"b": 0.0823529139
+			},
+			"Locked": false,
+			"Grid": true,
+			"Snap": true,
+			"IgnoreFoW": false,
+			"Autoraise": true,
+			"Sticky": true,
+			"Tooltip": true,
+			"GridProjection": false,
+			"HideWhenFaceDown": false,
+			"Hands": false,
+			"Counter": {
+				"value": 40
+			},
+			"XmlUI": "",
+			"LuaScript": "",
+			"LuaScriptState": "",
+			"GUID": "5dbcec"
+		},
+		{
+			"Name": "Counter",
+			"Transform": {
+				"posX": 0,
+				"posY": 1,
+				"posZ": -2.5,
+				"rotX": 0,
+				"rotY": 0,
+				"rotZ": 0,
+				"scaleX": 2.2,
+				"scaleY": 2.2,
+				"scaleZ": 2.2
+			},
+			"Nickname": "",
+			"Description": "",
+			"GMNotes": "",
+			"ColorDiffuse": {
+				"r": 0.0823529139,
+				"g": 0.0823529139,
+				"b": 0.0823529139
+			},
+			"Locked": false,
+			"Grid": true,
+			"Snap": true,
+			"IgnoreFoW": false,
+			"Autoraise": true,
+			"Sticky": true,
+			"Tooltip": true,
+			"GridProjection": false,
+			"HideWhenFaceDown": false,
+			"Hands": false,
+			"Counter": {
+				"value": 40
+			},
+			"XmlUI": "",
+			"LuaScript": "",
+			"LuaScriptState": "",
+			"GUID": "4ae5b6"
+		},
+		{
+			"Name": "Chess_Knight",
+			"Transform": {
+				"posX": 6,
+				"posY": 4,
+				"posZ": 0,
+				"rotX": 0,
+				"rotY": 90,
+				"rotZ": 0,
+				"scaleX": 1.8,
+				"scaleY": 1.8,
+				"scaleZ": 1.8
+			},
+			"Nickname": "",
+			"Description": "",
+			"GMNotes": "",
+			"ColorDiffuse": {
+				"r": 1,
+				"g": 1,
+				"b": 1
+			},
+			"Locked": false,
+			"Grid": true,
+			"Snap": true,
+			"IgnoreFoW": false,
+			"Autoraise": true,
+			"Sticky": true,
+			"Tooltip": true,
+			"GridProjection": false,
+			"HideWhenFaceDown": false,
+			"Hands": false,
+			"MaterialIndex": 0,
+			"XmlUI": "",
+			"LuaScript": "",
+			"LuaScriptState": "",
+			"GUID": "73a427"
+		}
+	],
+	"SnapPoints": [
+		{
+			"Position": {
+				"x": 41.55562,
+				"y": 0.9611349,
+				"z": -23.9757271
+			}
+		},
+		{
+			"Position": {
+				"x": 41.6786232,
+				"y": 0.9611349,
+				"z": -16.0615368
+			}
+		},
+		{
+			"Position": {
+				"x": 41.6412239,
+				"y": 0.9611349,
+				"z": -20.270977
+			}
+		},
+		{
+			"Position": {
+				"x": -41.4360657,
+				"y": 0.9611349,
+				"z": -20.3747883
+			}
+		},
+		{
+			"Position": {
+				"x": -41.51519,
+				"y": 0.9611349,
+				"z": -24.0654373
+			}
+		},
+		{
+			"Position": {
+				"x": -41.3979874,
+				"y": 0.9611349,
+				"z": -16.2134476
+			}
+		},
+		{
+			"Position": {
+				"x": -41.45225,
+				"y": 0.9611349,
+				"z": 23.9976654
+			}
+		},
+		{
+			"Position": {
+				"x": -41.45728,
+				"y": 0.9611349,
+				"z": 20.32624
+			}
+		},
+		{
+			"Position": {
+				"x": -41.4764328,
+				"y": 0.9611349,
+				"z": 16.1356354
+			}
+		},
+		{
+			"Position": {
+				"x": 41.66338,
+				"y": 0.9611349,
+				"z": 24.0366688
+			}
+		},
+		{
+			"Position": {
+				"x": 41.60269,
+				"y": 0.9611349,
+				"z": 20.3648033
+			}
+		},
+		{
+			"Position": {
+				"x": 41.62077,
+				"y": 0.9611349,
+				"z": 16.17437
+			}
+		}
+	],
+	"DecalPallet": [],
+	"TabStates": {
+		"0": {
+			"title": "Rules",
+			"body": "",
+			"color": "Grey",
+			"visibleColor": {
+				"r": 0.5,
+				"g": 0.5,
+				"b": 0.5
+			},
+			"id": 0
+		},
+		"1": {
+			"title": "White",
+			"body": "",
+			"color": "White",
+			"visibleColor": {
+				"r": 1,
+				"g": 1,
+				"b": 1
+			},
+			"id": 1
+		},
+		"2": {
+			"title": "Brown",
+			"body": "",
+			"color": "Brown",
+			"visibleColor": {
+				"r": 0.443,
+				"g": 0.231,
+				"b": 0.09
+			},
+			"id": 2
+		},
+		"3": {
+			"title": "Red",
+			"body": "",
+			"color": "Red",
+			"visibleColor": {
+				"r": 0.856,
+				"g": 0.1,
+				"b": 0.094
+			},
+			"id": 3
+		},
+		"4": {
+			"title": "Orange",
+			"body": "",
+			"color": "Orange",
+			"visibleColor": {
+				"r": 0.956,
+				"g": 0.392,
+				"b": 0.113
+			},
+			"id": 4
+		},
+		"5": {
+			"title": "Yellow",
+			"body": "",
+			"color": "Yellow",
+			"visibleColor": {
+				"r": 0.905,
+				"g": 0.898,
+				"b": 0.172
+			},
+			"id": 5
+		},
+		"6": {
+			"title": "Green",
+			"body": "",
+			"color": "Green",
+			"visibleColor": {
+				"r": 0.192,
+				"g": 0.701,
+				"b": 0.168
+			},
+			"id": 6
+		},
+		"7": {
+			"title": "Blue",
+			"body": "",
+			"color": "Blue",
+			"visibleColor": {
+				"r": 0.118,
+				"g": 0.53,
+				"b": 1
+			},
+			"id": 7
+		},
+		"8": {
+			"title": "Teal",
+			"body": "",
+			"color": "Teal",
+			"visibleColor": {
+				"r": 0.129,
+				"g": 0.694,
+				"b": 0.607
+			},
+			"id": 8
+		},
+		"9": {
+			"title": "Purple",
+			"body": "",
+			"color": "Purple",
+			"visibleColor": {
+				"r": 0.627,
+				"g": 0.125,
+				"b": 0.941
+			},
+			"id": 9
+		},
+		"10": {
+			"title": "Pink",
+			"body": "",
+			"color": "Pink",
+			"visibleColor": {
+				"r": 0.96,
+				"g": 0.439,
+				"b": 0.807
+			},
+			"id": 10
+		},
+		"11": {
+			"title": "Black",
+			"body": "",
+			"color": "Black",
+			"visibleColor": {
+				"r": 0.25,
+				"g": 0.25,
+				"b": 0.25
+			},
+			"id": 11
+		}
+	},
+	"VersionNumber": "v12.2.2"
+}
