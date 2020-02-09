@@ -1,9 +1,9 @@
 {
     "Name": "Deck",
     "Transform": {
-        "posX": 1.75,
-        "posY": 1.5,
-        "posZ": -7.75,
+        "posX": 0,
+        "posY": 0,
+        "posZ": 0,
         "rotX": 0,
         "rotY": 180,
         "rotZ": 180,
