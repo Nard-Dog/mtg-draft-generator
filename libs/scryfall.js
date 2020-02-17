@@ -1,7 +1,7 @@
 const request = require('request-promise-native');
 
 async function fetchAllCards(sets, basic = false) {
-    const filters = [basic ? 'type:basic' : '-type:basic', 'include:extras', 'unique:prints'];
+    const filters = [basic ? 'type:basic' : '-type:basic'/*, 'include:extras', 'unique:prints'*/];
     const setFilter = sets.map(set => `set:${set}`).join(' OR ');
     filters.push(`(${setFilter})`);
 

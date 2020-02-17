@@ -51,6 +51,10 @@ class Card {
             this.object.Nickname += ` (${card.power}/${card.toughness})`;
         }
         this.object.Description = card.oracle_text;
+        if (card.layout === 'transform') {
+            const transformation = card.name === card.card_faces[0].name ? card.card_faces[1].name : card.card_faces[0].name;
+            this.object.Description += '\n----------\nTransforms into ' + transformation;
+        }
         this.object.CustomDeck = {
             [customDeck.id]: customDeck.object
         };

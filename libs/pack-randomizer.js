@@ -2,7 +2,12 @@ const rarityRatios = JSON.parse(process.env.RARITY_RATIOS);
 
 class PackRandomizer {
     constructor(cards) {
-        this.cards = cards;
+        this.cards = cards.map(card => {
+            if (card.layout === 'transform') {
+                return Object.assign({}, card, card.card_faces[0]);
+            }
+            return card;
+        });
     }
     randomNumber(range) {
         return new Promise((resolve) => {

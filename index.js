@@ -60,6 +60,14 @@ async function generateSaveFile() {
     tokenDeck.setTransform({ posX: -1.75, posZ: (start.posZ - 4), rotZ: 0 });
     await saveFile.addDeck(tokenDeck);
 
+    const transformCards = cards.filter(card => card.layout === 'transform').map(card => Object.assign({}, card, card.card_faces[1]));
+    if (transformCards.length) {
+        console.log('Building transform backs...');
+        const transformDeck = new Deck('Transform Backs', transformCards);
+        transformDeck.setTransform({ posX: -1.75, posZ: (start.posZ - 8), rotZ: 0 });
+        await saveFile.addDeck(transformDeck);
+    }
+    
     await fs.outputFile(SAVE_FILE_PATH, saveFile.toString(), { encoding: 'utf8' });
 }
 
