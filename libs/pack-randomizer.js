@@ -3,7 +3,7 @@ const rarityRatios = JSON.parse(process.env.RARITY_RATIOS);
 class PackRandomizer {
     constructor(cards) {
         this.cards = cards.map(card => {
-            if (card.layout === 'transform') {
+            if (['modal_dfc', 'transform'].includes(card.layout)) {
                 return Object.assign({}, card, card.card_faces[0]);
             }
             return card;
