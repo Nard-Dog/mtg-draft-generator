@@ -1,5 +1,5 @@
 const { createCanvas, loadImage } = require('canvas');
-const { uuid } = require('uuidv4');
+const { v4: uuidv4 } = require('uuid');
 const { Storage } = require('@google-cloud/storage');
 
 const {
@@ -18,7 +18,7 @@ const dimensions = {
 };
 
 async function uploadImage(buffer) {
-    const filePath = `${bucketFolder}/${uuid()}.jpg`;
+    const filePath = `${bucketFolder}/${uuidv4()}.jpg`;
     const file = bucket.file(filePath);
     await file.save(buffer);
     return `${storageURL}/${bucketName}/${filePath}`;

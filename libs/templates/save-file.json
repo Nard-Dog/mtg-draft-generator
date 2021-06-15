@@ -5,8 +5,9 @@
 	"PlayArea": 0.5,
 	"Date": "1/23/2020 1:02:07 AM",
 	"Table": "Table_Custom",
-	"TableURL": "https://storage.googleapis.com/mtg-decks/custom-mtg-table.png",
+	"TableURL": "https://storage.googleapis.com/mtg-decks/custom-mtg-table-pastel.png",
 	"Sky": "Sky_Sunset",
+	"SkyURL": "http://cloud-3.steamusercontent.com/ugc/1751304857502230239/422906C554174F2B0863D5C05CFC4A2100F43966/",
 	"Note": "",
 	"Rules": "",
 	"XmlUI": "<!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->",
@@ -14,25 +15,25 @@
 	"LuaScriptState": "",
 	"Grid": {
 		"Type": 0,
-		"Lines": false,
+		"Lines": true,
 		"Color": {
-			"r": 0,
-			"g": 0,
-			"b": 0
+		  "r": 0.0,
+		  "g": 0.0,
+		  "b": 0.0
 		},
-		"Opacity": 0.75,
+		"Opacity": 0.075,
 		"ThickLines": false,
-		"Snapping": false,
+		"Snapping": true,
 		"Offset": false,
 		"BothSnapping": false,
-		"xSize": 1,
-		"ySize": 1,
+		"xSize": 1.0,
+		"ySize": 1.0,
 		"PosOffset": {
-			"x": 0,
-			"y": 1,
-			"z": 0
+		  "x": 0.0,
+		  "y": 1.0,
+		  "z": 0.0
 		}
-	},
+	 },
 	"Lighting": {
 		"LightIntensity": 0.54,
 		"LightColor": {
@@ -851,86 +852,114 @@
 	"SnapPoints": [
 		{
 			"Position": {
-				"x": 41.55562,
+				"x": 41.64,
 				"y": 0.9611349,
-				"z": -23.9757271
+				"z": -23.3
 			}
 		},
 		{
 			"Position": {
-				"x": 41.6786232,
+				"x": 41.64,
 				"y": 0.9611349,
-				"z": -16.0615368
+				"z": -18.9
 			}
 		},
 		{
 			"Position": {
-				"x": 41.6412239,
+				"x": 38.04,
 				"y": 0.9611349,
-				"z": -20.270977
+				"z": -23.3
 			}
 		},
 		{
 			"Position": {
-				"x": -41.4360657,
+				"x": 38.04,
 				"y": 0.9611349,
-				"z": -20.3747883
+				"z": -18.9
 			}
 		},
 		{
 			"Position": {
-				"x": -41.51519,
+				"x": -2.3,
 				"y": 0.9611349,
-				"z": -24.0654373
+				"z": -23.3
 			}
 		},
 		{
 			"Position": {
-				"x": -41.3979874,
+				"x": -2.3,
 				"y": 0.9611349,
-				"z": -16.2134476
+				"z": -18.9
 			}
 		},
 		{
 			"Position": {
-				"x": -41.45225,
+				"x": -5.87,
 				"y": 0.9611349,
-				"z": 23.9976654
+				"z": -23.3
 			}
 		},
 		{
 			"Position": {
-				"x": -41.45728,
+				"x": -5.87,
 				"y": 0.9611349,
-				"z": 20.32624
+				"z": -18.9
 			}
 		},
 		{
 			"Position": {
-				"x": -41.4764328,
+				"x": 2.36,
 				"y": 0.9611349,
-				"z": 16.1356354
+				"z": 23.3
 			}
 		},
 		{
 			"Position": {
-				"x": 41.66338,
+				"x": 2.36,
 				"y": 0.9611349,
-				"z": 24.0366688
+				"z": 18.9
 			}
 		},
 		{
 			"Position": {
-				"x": 41.60269,
+				"x": 5.96,
 				"y": 0.9611349,
-				"z": 20.3648033
+				"z": 23.3
 			}
 		},
 		{
 			"Position": {
-				"x": 41.62077,
+				"x": 5.96,
 				"y": 0.9611349,
-				"z": 16.17437
+				"z": 18.9
+			}
+		},
+		{
+			"Position": {
+				"x": -41.64,
+				"y": 0.9611349,
+				"z": 23.3
+			}
+		},
+		{
+			"Position": {
+				"x": -41.64,
+				"y": 0.9611349,
+				"z": 18.9
+			}
+		},
+		{
+			"Position": {
+				"x": -38.04,
+				"y": 0.9611349,
+				"z": 23.3
+			}
+		},
+		{
+			"Position": {
+				"x": -38.04,
+				"y": 0.9611349,
+				"z": 18.9
 			}
 		}
 	],

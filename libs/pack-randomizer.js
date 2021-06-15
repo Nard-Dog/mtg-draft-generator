@@ -1,13 +1,13 @@
-const rarityRatios = JSON.parse(process.env.RARITY_RATIOS);
-
 class PackRandomizer {
-    constructor(cards) {
+    constructor(ratios, cards) {
+        this.ratios = ratios;
         this.cards = cards.map(card => {
             if (['modal_dfc', 'transform'].includes(card.layout)) {
                 return Object.assign({}, card, card.card_faces[0]);
             }
             return card;
         });
+        this.separateByRarity();
     }
     randomNumber(range) {
         return new Promise((resolve) => {
@@ -21,28 +21,24 @@ class PackRandomizer {
         return card.full_art || (Array.isArray(card.frame_effects) && card.frame_effects.length);
     }
     separateByRarity() {
-        const cardsByRarity = new Map();
-        Object.keys(rarityRatios).forEach(group => cardsByRarity.set(group, new Map()));
-    
+        this.ratios.forEach(group => group.cards = new Map());
+
         for (const card of this.cards) {
-            const groups = Object.keys(rarityRatios).filter(group => group.includes(card.rarity));
+            const groups = this.ratios.filter(group => group.rarities.includes(card.rarity));
             groups.forEach(group => {
-                const existingCard = cardsByRarity.get(group).get(card.oracle_id);
+                const existingCard = group.cards.get(card.oracle_id);
                 if (!existingCard || this.isPreferredPrint(card, existingCard)) {
-                    cardsByRarity.get(group).set(card.oracle_id, card);
+                    group.cards.set(card.oracle_id, card);
                 }
             });
         }
-    
-        return cardsByRarity;
     }
     async generatePack() {
-        const cardsByRarity = this.separateByRarity(this.cards);
         const pack = new Map();
-        for (const group in rarityRatios) {
+        for (const group of this.ratios) {
             let cardsChosen = 0;
-            const cardPool = Array.from(cardsByRarity.get(group));
-            while (cardsChosen < rarityRatios[group]) {
+            const cardPool = Array.from(group.cards);
+            while (cardsChosen < group.count) {
                 const randomIndex = await this.randomNumber(cardPool.length);
                 const [orace_id, card] = cardPool[randomIndex];
                 if (!pack.has(orace_id)) {
