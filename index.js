@@ -1,13 +1,15 @@
 require('dotenv').config();
 
 const fs = require('fs-extra');
+const fetch = require('node-fetch');
 const scryfall = require('./libs/scryfall');
-const { SaveFile, Deck } = require('./libs/tts');
+const { SavedObject, SaveFile, Deck } = require('./libs/tts');
 const PackRandomizer = require('./libs/pack-randomizer');
 
 const {
 	DRAFT_STYLE,
-	SAVE_FILE_PATH
+	SAVE_FILE_PATH,
+	FORMAT
 } = process.env;
 
 const {
@@ -24,7 +26,7 @@ const start = {
 	posZ: -7.75
 };
 
-const twoSidedLayouts = new Set(['transform', 'modal_dfc']);
+const twoSidedLayouts = new Set(['transform', 'modal_dfc', 'reversible_card']);
 
 const draftsByStyle = {
 	random: async function() {
@@ -125,14 +127,20 @@ const draftsByStyle = {
 		await fs.outputFile(`${SAVE_FILE_PATH}/MTG_Open_Set_Draft.json`, saveFile.toString(), { encoding: 'utf8' });
 	},
 	constructed: async function() {
-		const saveFile = new SaveFile();
+		const decks = require('./constructed-decks');
+		for (const { id } of decks[FORMAT]) {
+			const savedObject = new SavedObject();
+			const deck = await scryfall.fetchDeck(id);
+			const primaryCards = [], outsideCards = [], tokens = new Map();
 
-		const decks = await fs.readJson('./constructed-decks.json');
-		for (const deckId of Object.values(decks)) {
-			const deck = await scryfall.fetchDeck(deckId), primaryCards = [], outsideCards = [], tokens = new Map();
 			console.log(`Constructing deck ${deck.name}`);
-			const primaryEntries = [...deck.entries.commanders, ...deck.entries.nonlands, ...deck.entries.lands].filter(entry => entry.card_digest?.id);
+			const primaryEntries = [
+				...(deck.entries.commanders ?? deck.entries.mainboard),
+				...(deck.entries.nonlands ?? []),
+				...(deck.entries.lands ?? [])
+			].filter(entry => entry.card_digest?.id);
 			const outsideEntries = deck.entries.outside?.filter(entry => entry.card_digest?.id) ?? [];
+
 			for (const entry of primaryEntries) {
 				console.log(`⤷ fetching info for ${entry.card_digest.name}...`);
 				let card = await scryfall.fetchCardById(entry.card_digest.id);
@@ -150,6 +158,7 @@ const draftsByStyle = {
 					}
 				}
 			}
+
 			for (const entry of outsideEntries) {
 				console.log(`⤷ fetching info for ${entry.card_digest.name}...`);
 				let card = await scryfall.fetchCardById(entry.card_digest.id);
@@ -167,26 +176,41 @@ const draftsByStyle = {
 					}
 				}
 			}
-			let z = start.posZ;
+
+			let x = 0
 			const mainDeck = new Deck(deck.name, primaryCards);
-			mainDeck.setTransform({ posX: start.posX + i * 3, posZ: z });
-			await saveFile.addDeck(mainDeck);
+			mainDeck.setTransform({ posX: x, posY: 0, posZ: 0 });
+			await savedObject.addDeck(mainDeck);
 			if (outsideCards.length) {
 				const outsideDeck = new Deck(`${deck.name} - Outside`, outsideCards);
-				outsideDeck.setTransform({ posX: start.posX + i * 3, posZ: (z -= 4) });
-				await saveFile.addDeck(outsideDeck);
+				outsideDeck.setTransform({ posX: (x += 3), posY: 0, posZ: 0 });
+				await savedObject.addDeck(outsideDeck);
 			}
 			if (tokens.size) {
 				const tokensDeck = new Deck(`${deck.name} - Tokens`, Array.from(tokens.values()));
-				tokensDeck.setTransform({ posX: start.posX + i * 3, posZ: (z -= 4) });
-				await saveFile.addDeck(tokensDeck);
+				tokensDeck.setTransform({ posX: (x += 3), posY: 0, posZ: 0 });
+				await savedObject.addDeck(tokensDeck);
+			}
+
+			const deckSlug = deck.name.toLowerCase().replace(/[^a-z0-9- ]+/g, '').trim().replace(/\s+/g, '-');
+			await fs.outputFile(`${SAVE_FILE_PATH}/Saved Objects/${FORMAT}/${deckSlug}.json`, savedObject.toString(), { encoding: 'utf8' });
+
+			if (deck.entries.commanders?.length) {
+				const deckThumbnail = deck.entries.commanders[0].card_digest?.image_uris?.front;
+				if (deckThumbnail) {
+					const res = await fetch(deckThumbnail.replace('/large', '/png').replace('.jpg', '.png'));
+					const buffer = await res.buffer();
+					await fs.outputFile(`${SAVE_FILE_PATH}/Saved Objects/${FORMAT}/${deckSlug}.png`, buffer);
+				}
 			}
 		}
-		await fs.outputFile(`${SAVE_FILE_PATH}/MTG_Constructed_Decks.json`, saveFile.toString(), { encoding: 'utf8' });
 	}
 }
 
 draftsByStyle[DRAFT_STYLE]()
 .then(() => console.log(`Save file successfully created`))
 .catch(err => console.log(err))
-.finally(() => scryfall.saveCache());
+.finally(async () => {
+	await scryfall.saveCache();
+	await SaveFile.saveCache();
+});

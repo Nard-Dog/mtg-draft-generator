@@ -1,11 +1,17 @@
 const cloneDeep = require('lodash/clonedeep');
 const spritesheet = require('./spritesheet');
+const { v5: uuidv5 } = require('uuid');
+const fs = require('fs-extra');
+const namespace = '1b671a64-40d5-491e-99b0-da01ff1f3341';
 
 const templates = {
 	deck: require('./templates/deck.json'),
 	card: require('./templates/card.json'),
-	saveFile: require('./templates/save-file.json')
+	saveFile: require('./templates/save-file.json'),
+	savedObject: require('./templates/saved-object.json')
 };
+
+const cache = fs.pathExistsSync('.cache/tts.json') ? fs.readJsonSync('.cache/tts.json') : {};
 
 const {
 	STORAGE_BUCKET,
@@ -40,7 +46,8 @@ class CustomDeck {
 			NumWidth: sheet.cols,
 			NumHeight: sheet.rows,
 			BackIsHidden: true,
-			UniqueBack: false
+			UniqueBack: false,
+			Type: 0
 		};
 
 		return this;
@@ -75,9 +82,15 @@ class Card {
 
 class Deck {
 	constructor(nickname, cards) {
-		this.cards = cards;
-		this.object = cloneDeep(templates.deck);
-		this.object.Nickname = nickname;
+		this.key = uuidv5(cards.map(card => card.id).join(','), namespace);
+		if (cache[this.key]) {
+			this.object = cache[this.key];
+		} else {
+			this.cards = cards;
+			this.object = cloneDeep(templates.deck);
+			this.object.Nickname = nickname;
+		}
+		this.object.GUID = this.key.substr(0, 6);
 	}
 	addCard(card) {
 		this.object.DeckIDs.push(card.id);
@@ -92,19 +105,21 @@ class Deck {
 		if (rotZ != null) this.object.Transform.rotZ = rotZ;
 	}
 	async build() {
-		const remainingCards = this.cards.slice();
-		while (remainingCards.length) {
-			const batch = remainingCards.splice(0, CustomDeck.MAX_SIZE);
-			const customDeck = new CustomDeck(SaveFile.generateDeckID(), batch);
-			await customDeck.build();
+		if (!this.object.ContainedObjects.length) {
+			const remainingCards = this.cards.slice();
+			while (remainingCards.length) {
+				const batch = remainingCards.splice(0, CustomDeck.MAX_SIZE);
+				const customDeck = new CustomDeck(SaveFile.generateDeckID(), batch);
+				await customDeck.build();
 
-			this.object.CustomDeck[customDeck.id] = customDeck.object;
-			for (const card of batch) {
-				this.addCard(new Card(customDeck.generateCardID(), card, customDeck));
+				this.object.CustomDeck[customDeck.id] = customDeck.object;
+				for (const card of batch) {
+					this.addCard(new Card(customDeck.generateCardID(), card, customDeck));
+				}
 			}
+			cache[this.key] = this.object;
 		}
-
-		return this;
+		return this.object;
 	}
 }
 
@@ -122,21 +137,51 @@ class SaveFile {
 	}
 	async addDeck(deck) {
 		const builtDeck = await deck.build();
-		if (builtDeck.object.ContainedObjects.length > 1) {
-			this.object.ObjectStates.push(builtDeck.object);
+		if (builtDeck.ContainedObjects.length > 1) {
+			this.object.ObjectStates.push(builtDeck);
 		} else {
-			const card = builtDeck.object.ContainedObjects[0];
-			card.Transform = builtDeck.object.Transform;
+			const card = builtDeck.ContainedObjects[0];
+			card.Transform = builtDeck.Transform;
 			this.object.ObjectStates.push(card);
 		}
 	}
 	toString() {
 		this.setDate(new Date());
-		return JSON.stringify(this.object, null, '\t');
+		return JSON.stringify(this.object, null, 2);
+	}
+	static async saveCache() {
+		return await fs.outputJson('.cache/tts.json', cache);
+	}
+}
+
+class SavedObject {
+	constructor() {
+		this.object = cloneDeep(templates.savedObject);
+	}
+	static generateDeckID() {
+		return nextDeckID++;
+	}
+	setDate(date) {
+		this.object.Date = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+	}
+	async addDeck(deck) {
+		const builtDeck = await deck.build();
+		if (builtDeck.ContainedObjects.length > 1) {
+			this.object.ObjectStates.push(builtDeck);
+		} else {
+			const card = builtDeck.ContainedObjects[0];
+			card.Transform = builtDeck.Transform;
+			this.object.ObjectStates.push(card);
+		}
+	}
+	toString() {
+		this.setDate(new Date());
+		return JSON.stringify(this.object, null, 2);
 	}
 }
 
 module.exports = {
 	SaveFile,
+	SavedObject,
 	Deck
 };

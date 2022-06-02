@@ -1,6 +1,9 @@
 const fetch = require('node-fetch');
 const fs = require('fs-extra');
-const cache = fs.pathExistsSync('./.cache.json') ? fs.readJsonSync('.cache.json') : {};
+const cache = {
+	cards: fs.pathExistsSync('.cache/cards.json') ? fs.readJsonSync('.cache/cards.json') : {},
+	decks: fs.pathExistsSync('.cache/decks.json') ? fs.readJsonSync('.cache/decks.json') : {}
+};
 
 async function fetchPrints(oracleId) {
 	const key = `prints-${oracleId}`;
@@ -66,19 +69,22 @@ module.exports = {
 		const tokenSets = sets.map(set => 't' + set);
 		return fetchAllCards(tokenSets);
 	},
-	fetchDeck(id) {
-		return fetch(`https://api.scryfall.com/decks/${id}/export/json`).then(res => res.json()).catch(err => null);
+	async fetchDeck(id) {
+		if (!cache.decks[id]) {
+			const deck = await fetch(`https://api.scryfall.com/decks/${id}/export/json`).then(res => res.json()).catch(err => null);
+			if (deck) cache.decks[id] = deck;
+		}
+		return cache.decks[id];
 	},
 	async fetchCardById(id) {
-		const key = `card-${id}`;
-		if (!cache[key]) {
-			const res = await fetch(`https://api.scryfall.com/cards/${id}?format=json&pretty=true`);
-			const data = res.ok ? await res.json() : null;
-			if (data) cache[key] = data;
+		if (!cache.cards[id]) {
+			const card = await fetch(`https://api.scryfall.com/cards/${id}`).then(res => res.json()).catch(err => null);
+			if (card) cache.cards[id] = card;
 		}
-		return cache[key];
+		return cache.cards[id];
 	},
-	saveCache() {
-		return fs.writeJson('.cache.json', cache);
+	async saveCache() {
+		await fs.outputJson('.cache/cards.json', cache.cards);
+		await fs.outputJson('.cache/decks.json', cache.decks);
 	}
 }

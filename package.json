@@ -5,7 +5,8 @@
   "scripts": {
     "generate:draft": "DRAFT_STYLE=random node index.js",
     "generate:sets": "DRAFT_STYLE=openSet node index.js",
-    "generate:decks": "DRAFT_STYLE=constructed node index.js"
+    "generate:decks:commander": "DRAFT_STYLE=constructed FORMAT=commander node index.js",
+    "generate:decks:modern": "DRAFT_STYLE=constructed FORMAT=modern node index.js"
   },
   "dependencies": {
     "@google-cloud/storage": "^5.7.1",
