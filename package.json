@@ -2,19 +2,21 @@
   "name": "mtg-draft-generator",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "generate:draft": "DRAFT_STYLE=random node index.js",
     "generate:sets": "DRAFT_STYLE=openSet node index.js",
     "generate:decks:commander": "DRAFT_STYLE=constructed FORMAT=commander node index.js",
     "generate:decks:modern": "DRAFT_STYLE=constructed FORMAT=modern node index.js"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
-    "@google-cloud/storage": "^5.7.1",
-    "canvas": "^2.6.1",
-    "dotenv": "^8.2.0",
-    "fs-extra": "^9.0.1",
-    "lodash": "^4.17.20",
-    "node-fetch": "^2.6.1",
-    "uuid": "^8.3.2"
+    "@google-cloud/storage": "^7.0.1",
+    "canvas": "^2.11.2",
+    "dotenv": "^16.3.1",
+    "lodash.clonedeep": "^4.5.0",
+    "uuid": "^9.0.0"
   }
 }

@@ -1,6 +1,6 @@
 node_modules
-package-lock.json
 .env
 .draft-config.json
 .cache
-constructed-decks.js
+.creds
+.constructed-decks.js
