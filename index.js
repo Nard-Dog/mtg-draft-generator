@@ -22,7 +22,7 @@ const start = {
   posZ: -7.75
 };
 
-const twoSidedLayouts = new Set(['transform', 'modal_dfc', 'reversible_card']);
+const twoSidedLayouts = new Set(['transform', 'modal_dfc', 'reversible_card', 'double_faced_token']);
 
 const draftsByStyle = {
   random: async function() {
@@ -123,7 +123,7 @@ const draftsByStyle = {
     await fs.writeFile(`${SAVE_FILE_PATH}/MTG_Open_Set_Draft.json`, saveFile.toString(), 'utf8');
   },
   constructed: async function() {
-    const decks = require('./constructed-decks');
+    const {decks} = await import('./.constructed-decks.js');
     for (const { id } of decks[FORMAT]) {
       const savedObject = new SavedObject();
       const deck = await scryfall.fetchDeck(id);
@@ -195,7 +195,7 @@ const draftsByStyle = {
         const deckThumbnail = deck.entries.commanders[0].card_digest?.image_uris?.front;
         if (deckThumbnail) {
           const res = await fetch(deckThumbnail.replace('/large', '/png').replace('.jpg', '.png'));
-          const buffer = await res.buffer();
+          const buffer = Buffer.from(await res.arrayBuffer());
           await fs.writeFile(`${SAVE_FILE_PATH}/Saved Objects/${FORMAT}/${deckSlug}.png`, buffer);
         }
       }

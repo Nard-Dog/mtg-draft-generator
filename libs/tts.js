@@ -27,6 +27,9 @@ export class CustomDeck {
   }
   async build() {
     const images = [...this.cards.map(card => {
+      if (!card.image_uris && card.card_faces?.[0]) {
+        Object.assign(card, card.card_faces[0]);
+      }
       const { id, name, image_uris: { large, normal, small } = {} } = card
       const image = large || normal || small;
       if (!image) throw new Error(`Missing card image for ${name} - ${id}`);
