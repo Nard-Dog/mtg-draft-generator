@@ -15,7 +15,7 @@ async function fetchPrints(oracleId) {
     const url = new URL('https://api.scryfall.com/cards/search');
     url.searchParams.set('order', 'released');
     url.searchParams.set('unique', 'prints');
-    url.searchParams.set('q', [`oracleid:${oracleId}`].join(' '));
+    url.searchParams.set('q', [`oracleid:${oracleId}`, 'game:paper'].join(' '));
 
     const res = await fetch(url.toString());
     if (res.ok) {
@@ -27,7 +27,7 @@ async function fetchPrints(oracleId) {
 };
 
 async function fetchAllCards(sets, basic = false, unique = false) {
-  const filters = [basic ? 'type:basic' : '-type:basic'];
+  const filters = [basic ? 'type:basic' : '-type:basic', 'game:paper'];
   if (unique) filters.push('unique:prints');
   const setFilter = sets.map(set => `set:${set}`).join(' OR ');
   filters.push(`(${setFilter})`);
@@ -52,11 +52,11 @@ async function fetchAllCards(sets, basic = false, unique = false) {
   const qualityCards = [];
   for (const card of cards) {
     let qualityCard = card;
-    if (!card.highres_image) {
-      const prints = await fetchPrints(card.oracle_id);
-      const highRes = prints.find(print => print.highres_image);
-      if (highRes) qualityCard = highRes;
-    }
+    const prints = await fetchPrints(card.oracle_id);
+    const highRes = prints
+      .sort((a, b) => (b.frame_effects?.length ?? 0) - (a.frame_effects?.length ?? 0))
+      .find(print => print.highres_image);
+    if (highRes) qualityCard = highRes;
     qualityCards.push(qualityCard);
   }
   return qualityCards;
