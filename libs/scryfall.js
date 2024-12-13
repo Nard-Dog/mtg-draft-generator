@@ -1,4 +1,5 @@
 import fs from 'fs/promises';
+import { setTimeout } from 'timers/promises';
 
 const cache = {
   cards: await import('../.cache/cards.json', { assert: { type: 'json' } })
@@ -7,23 +8,6 @@ const cache = {
   decks: await import('../.cache/decks.json', { assert: { type: 'json' } })
     .then((module) => module.default)
     .catch(() => ({}))
-};
-
-async function fetchPrints(oracleId) {
-  const key = `prints-${oracleId}`;
-  if (!cache[key]) {
-    const url = new URL('https://api.scryfall.com/cards/search');
-    url.searchParams.set('order', 'released');
-    url.searchParams.set('unique', 'prints');
-    url.searchParams.set('q', [`oracleid:${oracleId}`, 'game:paper'].join(' '));
-
-    const res = await fetch(url.toString());
-    if (res.ok) {
-      const { data } = await res.json();
-      cache[key] = data;
-    }
-  }
-  return cache[key];
 };
 
 async function fetchAllCards(sets, basic = false, unique = false) {
@@ -38,28 +22,18 @@ async function fetchAllCards(sets, basic = false, unique = false) {
     url.searchParams.set('q', filters.join(' '));
     url.searchParams.set('page', page++);
 
+    await setTimeout(100);
     const res = await fetch(url.toString());
     if (res.ok) {
       const { has_more, data } = await res.json();
       if (data) cards = cards.concat(data);
       moreCards = has_more || false;
     } else {
+      console.warn(res.status, await res.json());
       moreCards = false;
     }
   }
-  if (basic) return cards;
-  // Find high-res cards if possible
-  const qualityCards = [];
-  for (const card of cards) {
-    let qualityCard = card;
-    const prints = await fetchPrints(card.oracle_id);
-    const highRes = prints
-      .sort((a, b) => (b.frame_effects?.length ?? 0) - (a.frame_effects?.length ?? 0))
-      .find(print => print.highres_image);
-    if (highRes) qualityCard = highRes;
-    qualityCards.push(qualityCard);
-  }
-  return qualityCards;
+  return cards;
 };
 
 export function fetchCards(sets) {
