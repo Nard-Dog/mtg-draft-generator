@@ -1,6 +1,10 @@
-import { setTimeout } from 'timers/promises';
+import {randomInt} from 'crypto';
+
+const MAX_LANDS_PER_PACK = 1;
 
 export default class PackRandomizer {
+  #selectedMythics = new Set();
+
   constructor(ratios, cards) {
     this.ratios = ratios;
     this.cards = cards.map(card => {
@@ -10,10 +14,6 @@ export default class PackRandomizer {
       return card;
     });
     this.separateByRarity();
-  }
-  async randomNumber(range) {
-    await setTimeout(10);
-    return Math.floor(Math.random() * range);
   }
   isPreferredPrint(card, other) {
     if (other && other.frame_effects && other.frame_effects.includes('extendedart')) return false;
@@ -32,16 +32,21 @@ export default class PackRandomizer {
       });
     }
   }
-  async generatePack() {
+  generatePack() {
     const pack = new Map();
+    let numOfLands = 0;
     for (const group of this.ratios) {
       let cardsChosen = 0;
       const cardPool = Array.from(group.cards);
       while (cardsChosen < group.count) {
-        const randomIndex = await this.randomNumber(cardPool.length);
-        const [orace_id, card] = cardPool[randomIndex];
-        if (!pack.has(orace_id)) {
+        const [orace_id, card] = cardPool[randomInt(0, cardPool.length)];
+        const isLand = card.type_line?.toLowerCase().includes('land');
+        if (isLand && numOfLands === MAX_LANDS_PER_PACK) continue;
+
+        if (!pack.has(orace_id) && !this.#selectedMythics.has(orace_id)) {
           pack.set(orace_id, card);
+          if (card.rarity === 'mythic') this.#selectedMythics.add(orace_id);
+          if (isLand) numOfLands++;
           cardsChosen++;
         }
       }
