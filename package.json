@@ -10,13 +10,13 @@
     "generate:decks:modern": "DRAFT_STYLE=constructed FORMAT=modern node index.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=23"
   },
   "dependencies": {
-    "@google-cloud/storage": "^7.11.2",
-    "canvas": "^2.11.2",
-    "dotenv": "^16.4.5",
+    "@google-cloud/storage": "^7.15.2",
+    "canvas": "^3.1.0",
+    "dotenv": "^16.4.7",
     "lodash.clonedeep": "^4.5.0",
-    "uuid": "^9.0.1"
+    "uuid": "^11.1.0"
   }
 }

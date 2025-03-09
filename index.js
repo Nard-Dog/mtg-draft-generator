@@ -4,7 +4,7 @@ import fs from 'fs/promises';
 import * as scryfall from './libs/scryfall.js';
 import { SavedObject, SaveFile, Deck } from './libs/tts.js';
 import PackRandomizer from './libs/pack-randomizer.js';
-import draftConfig from './.draft-config.json' assert { type: 'json' };
+import draftConfig from './.draft-config.json' with { type: 'json' };
 
 const {
   DRAFT_STYLE,

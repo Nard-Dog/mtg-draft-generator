@@ -2,12 +2,12 @@ import fs from 'fs/promises';
 import cloneDeep from 'lodash.clonedeep';
 import * as spritesheet from './spritesheet.js';
 import { v5 as uuidv5 } from 'uuid';
-import deckTemplate from './templates/deck.json' assert { type: 'json' };
-import cardTemplate from './templates/card.json' assert { type: 'json' };
-import saveFileTemplate from './templates/save-file.json' assert { type: 'json' };
-import savedObjectTemplate from './templates/saved-object.json' assert { type: 'json' };
+import deckTemplate from './templates/deck.json' with { type: 'json' };
+import cardTemplate from './templates/card.json' with { type: 'json' };
+import saveFileTemplate from './templates/save-file.json' with { type: 'json' };
+import savedObjectTemplate from './templates/saved-object.json' with { type: 'json' };
 
-const cache = await import('../.cache/tts.json', { assert: { type: 'json' } })
+const cache = await import('../.cache/tts.json', { with: { type: 'json' } })
   .then((module) => module.default)
   .catch(() => ({}));
 
